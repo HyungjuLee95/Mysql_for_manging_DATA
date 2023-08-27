@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Getter
 public class Member {
-    final private long id;
+    final private Long id;
     private String nickname;
     final private LocalDate birthday;
     final private String email;
@@ -18,7 +18,7 @@ public class Member {
     final private static Long NAME_MAX_LENGTH=10L;
 
     @Builder
-    public Member(long id, String nickname, LocalDate birthday, String email, LocalDateTime createdat) {
+    public Member(Long id, String nickname, LocalDate birthday, String email, LocalDateTime createdat) {
         this.id = id;
         this.nickname = Objects.requireNonNull(nickname);
         this.birthday = Objects.requireNonNull(birthday);
