@@ -28,7 +28,15 @@ public class Member {
         this.createdat = createdat == null? LocalDateTime.now() : createdat;
     }
 
-    void validateNickName(String nickname){
+    public void changeNickname(String to){
+        Objects.requireNonNull(to);
+        validateNickName(to);
+        nickname=to;
+    }
+    //member라는 객체에 넣은 이유는 단일 테스트에 용이해지기에 이렇게 선택했다.
+
+
+    private void validateNickName(String nickname){
         Assert.isTrue(nickname.length()<= NAME_MAX_LENGTH, "최대 길이를 초과했습니다.");
     }
 
