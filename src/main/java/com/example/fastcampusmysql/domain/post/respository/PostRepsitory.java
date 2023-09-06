@@ -20,7 +20,8 @@ import java.util.List;
 public class PostRepsitory {
     static final String Table = "Post";
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    final static private RowMapper<DailyPostCount> DAILY_POST_COUNT_MAPPER =(ResultSet resultSet,int rowNum)-> new DailyPostCount(
+    final static private RowMapper<DailyPostCount> DAILY_POST_COUNT_MAPPER =(ResultSet resultSet,int rowNum)
+            -> new DailyPostCount(
             resultSet.getLong("memberId"),
             resultSet.getObject("createdDate", LocalDate.class),
             resultSet.getLong("count")
@@ -60,7 +61,7 @@ public class PostRepsitory {
                 .memberId(post.getMemberId())
                 .contents(post.getContents())
                 .createdAt(post.getCreatedAt())
-                .createDate(post.getCreatedDate())
+                .createdDate(post.getCreatedDate())
                 .build();
 
     }

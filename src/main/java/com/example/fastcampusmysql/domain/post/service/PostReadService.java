@@ -15,7 +15,7 @@ public class PostReadService {
     //일자별 게시물 등록수를 반환하는 것
     final private PostRepsitory postRepsitory;
 
-    public List<DailyPostCount> getDailyPostCount(DailyPostCountRequest request){
+    public List<DailyPostCount> getDailyPostCounts(DailyPostCountRequest request){
         /*
         반환 값 -> 리스트[작성일자, 작성회원, 작성 게시물 갯수]
         select * from Post where memberId = : memberId and createdDate between firstDate and lastDate

@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("posts")
+@RequestMapping("/posts")
 public class PostController {
     final private PostWriteService postWriteService;
     final private PostReadService postReadService;
@@ -23,9 +23,9 @@ public class PostController {
         return postWriteService.create(command);
     }
 
-    @GetMapping("/daily-post-counts")
-    public List<DailyPostCount> getDailyPostCounts(  DailyPostCountRequest request){
-        return postReadService.getDailyPostCount(request);
+    @PostMapping("/daily-post-counts")
+    public List<DailyPostCount> getDailyPostCounts( @RequestBody DailyPostCountRequest request){
+        return postReadService.getDailyPostCounts(request);
     }
 
 }

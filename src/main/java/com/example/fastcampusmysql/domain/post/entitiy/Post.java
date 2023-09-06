@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Post {
 
 
+
     final private Long id;
     final private Long memberId;
     final private String contents;
@@ -19,12 +20,21 @@ public class Post {
     final private LocalDateTime createdAt;
 
     @Builder
-    public Post(Long id, Long memberId, String contents, LocalDate createDate, LocalDateTime createdAt) {
+    public Post(Long id, Long memberId, String contents, LocalDate createdDate, LocalDateTime createdAt) {
         this.id = id;
         this.memberId = Objects.requireNonNull(memberId);
         this.contents = Objects.requireNonNull(contents);
-        this.createdDate = createDate == null ? LocalDate.now() : createDate;
+        this.createdDate = createdDate == null ? LocalDate.now() : createdDate;
         this.createdAt = createdAt== null ? LocalDateTime.now() : createdAt;
     }
+
+//    @Builder
+//    public Post(Long id, Long memberId, String contents, LocalDate createdDate, LocalDateTime createdAt) {
+//        this.id = id;
+//        this.memberId = Objects.requireNonNull(memberId);
+//        this.contents = Objects.requireNonNull(contents);
+//        this.createdDate = createdDate == null ? LocalDate.now() : createdDate;
+//        this.createdAt = createdAt== null ? LocalDateTime.now() : createdAt;
+//    }
 
 }
