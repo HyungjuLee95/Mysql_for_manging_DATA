@@ -49,6 +49,23 @@ public class PostRepsitory {
         throw new UnsupportedOperationException("Post는 갱신을 지원하지 않습니다.");
     }
 
+    public void bulkInsert(List<Post> posts) {
+        var sql = String.format("""
+                INSERT INTO `%s` (memberId, contents, createdDate, createdAt)
+                VALUES (:memberId, :contents, :createdDate, :createdAt)
+                """, Table);
+
+        SqlParameterSource[] params = posts
+                .stream()
+                .map(BeanPropertySqlParameterSource::new)
+                .toArray(SqlParameterSource[]::new);
+        namedParameterJdbcTemplate.batchUpdate(sql, params);
+    }
+
+    //위에 sql을 보면 결국 저 쿼리문에 해당하는 거싱 여러개가 들어가게 되는데, 그렇다면 리스트를 바인딩해줄 수 있어야한다. SqlParameterSource에 리스트로 파라미터를 넘겨주고
+    // batchUpdate라는 함수를 사용하면 리스트가 바인딩이 된다.
+
+
     private Post insert(Post post) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(namedParameterJdbcTemplate.getJdbcTemplate())
                 .withTableName("Post")
